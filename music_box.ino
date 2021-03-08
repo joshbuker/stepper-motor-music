@@ -38,7 +38,7 @@
 // Music variables (do not edit)
 // -----------------------------
 
-#define BEAT 60000.0/BPM
+#define BEAT_IN_MICROS 60000.0/BPM
 #define STACCATO_DELAY_IN_MICROS 50
 
 // -----------
@@ -99,7 +99,7 @@ void note(float beats, float note, int octave) {
   previousOctave = octave;
 
   // Convert the beats into microseconds...
-  float duration = beats * BEAT;
+  float duration = beats * BEAT_IN_MICROS;
   // If the note should be staccato, include a small rest...
   if(staccato == true) {
     duration -= STACCATO_DELAY_IN_MICROS;
@@ -122,7 +122,7 @@ void note(float beats, float note, int octave) {
 
 void rest(float beats) {
   // Convert the beats into microseconds...
-  int duration = beats * BEAT;
+  int duration = beats * BEAT_IN_MICROS;
   // And rest for that duration...
   restMicros(duration);
 }
