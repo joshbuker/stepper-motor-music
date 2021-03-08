@@ -38,8 +38,8 @@
 // Music variables (do not edit)
 // -----------------------------
 
-#define BEAT_IN_MICROS 60000.0/BPM
-#define STACCATO_DELAY_IN_MICROS 50
+#define BEAT_IN_MILLIS 60000.0/BPM
+#define STACCATO_DELAY_IN_MILLIS 50
 
 // -----------
 // Code Begins
@@ -65,7 +65,7 @@ void setup() {
   note(0.25,  C,  1);
   rest(0.25);
   note(0.5,   C,  0);
-  restMicros(1500);
+  restMillis(1500);
 }
 
 // Tabi no Tochuu
@@ -98,11 +98,11 @@ void note(float beats, float note, int octave) {
   previousNote = note;
   previousOctave = octave;
 
-  // Convert the beats into microseconds...
-  float duration = beats * BEAT_IN_MICROS;
+  // Convert the beats into milliseconds...
+  float duration = beats * BEAT_IN_MILLIS;
   // If the note should be staccato, include a small rest...
   if(staccato == true) {
-    duration -= STACCATO_DELAY_IN_MICROS;
+    duration -= STACCATO_DELAY_IN_MILLIS;
   }
   // Convert the note and octave into RPM for the stepper motor
   int speed = (note * pow(2, octave)) * 60;
@@ -116,22 +116,22 @@ void note(float beats, float note, int octave) {
 
   // If the note should be staccato, include a small rest...
   if(staccato == true) {
-    restMicros(STACCATO_DELAY_IN_MICROS);
+    restMillis(STACCATO_DELAY_IN_MILLIS);
   }
 }
 
 void rest(float beats) {
-  // Convert the beats into microseconds...
-  float duration = beats * BEAT_IN_MICROS;
+  // Convert the beats into milliseconds...
+  float duration = beats * BEAT_IN_MILLIS;
   // And rest for that duration...
-  restMicros(duration);
+  restMillis(duration);
 }
 
-void restMicros(int micros) {
+void restMillis(int millis) {
   // Disable hold position (unwanted noise)...
   disableStepper();
   // Wait for the duration...
-  delay(micros);
+  delay(millis);
 }
 
 void disableStepper() {
