@@ -122,7 +122,7 @@ void note(float beats, float note, int octave) {
 
 void rest(float beats) {
   // Convert the beats into microseconds...
-  int duration = beats * BEAT_IN_MICROS;
+  float duration = beats * BEAT_IN_MICROS;
   // And rest for that duration...
   restMicros(duration);
 }
