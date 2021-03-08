@@ -110,14 +110,14 @@ void note(float beats, float note, int octave) {
   // simplifies to...
   int steps = (speed/300.0)*duration;
 
-  // Play the note...
-  musicBox.setSpeed(speed);
-  musicBox.step(steps);
-
   // If the note should be staccato, include a small rest...
   if(staccato == true) {
     restMillis(STACCATO_DELAY_IN_MILLIS);
   }
+
+  // Play the note...
+  musicBox.setSpeed(speed);
+  musicBox.step(steps);
 }
 
 void rest(float beats) {
