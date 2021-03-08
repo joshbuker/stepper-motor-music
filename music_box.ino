@@ -16,6 +16,7 @@
 // --------------
 
 #define BPM 90
+#define OCTAVE_SHIFT -3
 
 // ---------------------------
 // Musical Scale (do not edit)
@@ -105,7 +106,7 @@ void note(float beats, float note, int octave) {
     duration -= STACCATO_DELAY_IN_MILLIS;
   }
   // Convert the note and octave into RPM for the stepper motor
-  int speed = (note * pow(2, octave)) * 60;
+  int speed = (note * pow(2, octave+OCTAVE_SHIFT)) * 60;
   // int steps = (((speed*200)/60)/1000)*duration;
   // simplifies to...
   int steps = (speed/300.0)*duration;
